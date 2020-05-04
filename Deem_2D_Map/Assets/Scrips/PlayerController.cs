@@ -21,22 +21,30 @@ public class PlayerController : MonoBehaviour
 
     [Header("Air Movement")]
     [Tooltip("The upward force when a player jumps")]
-    [Range(0f,10f)]
+    [Range(0f, 10f)]
     [SerializeField]
     private float jumpForce;
 
 
 
     private Rigidbody2D playerRigidbody;
-    private bool isJumping;
     private bool isFacingRight = true;
+    private bool isOnGround = true;
+    new private Collider2D collider;
+    private RaycastHit2D[] hits = new RaycastHit2D[16];
+    private float groundDistanceCheck = .05f;
+    private Animator animator;
+    private float horizontalInput = 0;
+    private bool isJumpPressed = false;
 
     void Start()
     {
 
         playerRigidbody = GetComponent<Rigidbody2D>();
 
+        collider = GetComponent<Collider2D>();
 
+        animator = GetComponent<Animator>();
 
     }
 
@@ -46,6 +54,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        horizontalInput += Input.GetAxis("Horizontal");
+        isJumpPressed = isJumpPressed || Input.GetButtonDown("Jump");
+
+
+    }
+
+    private void ClearInputs()
+    {
+
+        horizontalInput = 0;
+        isJumpPressed = false;
+    
+    }
+
+
+    void FixedUpdate()
+    {
+
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float xVelocity = horizontalInput * speed;
@@ -57,19 +84,32 @@ public class PlayerController : MonoBehaviour
             Flip();
 
         }
-        
 
 
+        int numHits = collider.Cast(Vector2.down, hits, groundDistanceCheck);
+        isOnGround = numHits > 0;
 
 
-    }
+        Vector2 rayStart = new Vector2(collider.bounds.center.x, collider.bounds.min.y);
+        Vector2 rayDirection = Vector2.down * groundDistanceCheck;
+        Debug.DrawRay(rayStart, rayDirection, Color.red, 1f);
 
 
-    void FixedUpdate()
-    { 
-    
-        //to do put physics code in here not update 
-    
+        //bool isJumpPressed = Input.GetButtonDown("Jump");
+        if (isJumpPressed && isOnGround)
+        {
+
+            playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        }
+
+
+        animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
+        animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
+        animator.SetBool("isOnGround", isOnGround);
+
+        ClearInputs();
+
     }
 
 
