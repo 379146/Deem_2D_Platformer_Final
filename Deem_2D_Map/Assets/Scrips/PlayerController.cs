@@ -92,10 +92,9 @@ public class PlayerController : MonoBehaviour
 
         Vector2 rayStart = new Vector2(collider.bounds.center.x, collider.bounds.min.y);
         Vector2 rayDirection = Vector2.down * groundDistanceCheck;
-        Debug.DrawRay(rayStart, rayDirection, Color.red, 1f);
+        //Debug.DrawRay(rayStart, rayDirection, Color.red, 1f);
 
 
-        //bool isJumpPressed = Input.GetButtonDown("Jump");
         if (isJumpPressed && isOnGround)
         {
 
