@@ -9,6 +9,11 @@ public class TriggerToNextScene : MonoBehaviour
     [SerializeField] private string nextSceneName;
 
 
+    void Strart()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ThePlayer"))

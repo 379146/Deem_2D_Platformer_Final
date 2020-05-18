@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: 
+  SoundQue: {fileID: 5102618452030708347, guid: 9399312486b059445b589fd302e84c50,
+    type: 3}

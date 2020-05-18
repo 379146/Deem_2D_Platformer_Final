@@ -298,6 +298,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jumpForce: 8
+  TUTORIALTEXT: {fileID: 0}
+  SoundQue: {fileID: 5102618452030708347, guid: 9399312486b059445b589fd302e84c50,
+    type: 3}
 --- !u!95 &7511615409786247362
 Animator:
   serializedVersion: 3

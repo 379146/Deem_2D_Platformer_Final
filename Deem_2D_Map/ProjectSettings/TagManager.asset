@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Collectable
   - ThePlayer
+  - baddieborder
+  - baddiebody
+  - VINEBOX
+  - GroundTrigger
+  - TUT1TAG
+  - TUT2TAG
+  - TUT3TAG
   layers:
   - Default
   - TransparentFX

@@ -36,6 +36,18 @@ public class CollectItem : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
+        //else if (collision.CompareTag("baddiebody"))
+        //{
+        //    Debug.Log("AAAAAHHHHH");
+        //    SceneManager.LoadScene("Death Screen");
+
+        //}
+
+
+
+
+
+
     
     }
 
